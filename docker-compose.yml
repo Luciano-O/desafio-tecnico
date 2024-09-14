@@ -10,6 +10,7 @@ services:
       - backend
     environment:
       NEXT_PUBLIC_BACKEND_URL: http://backend:3001
+      CHOKIDAR_USEPOLLING: "true"
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -24,10 +25,10 @@ services:
       - db
     environment:
       DATABASE_URL: mysql://root:password@db:3306/mydb
+      CHOKIDAR_USEPOLLING: "true"
     volumes:
       - ./backend:/app
       - /app/node_modules
-      - ./prisma:/app/prisma
     command: npm run start:dev
 
   db:
