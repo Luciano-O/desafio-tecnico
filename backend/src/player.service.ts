@@ -6,40 +6,65 @@ import { Player, Prisma } from '@prisma/client';
 export class PlayerService {
   constructor(private prisma: PrismaService) {}
 
-  async players(params: {
-    where?: Prisma.PlayerWhereInput;
-  }): Promise<Player[]> {
+  async players(params: { where?: Prisma.PlayerWhereInput }): Promise<any[]> {
     const { where } = params;
 
     return this.prisma.player.findMany({
       where,
-      include: {
-        team: true,
+      select: {
+        age: true,
+        image: true,
+        name: true,
+        id: true,
       },
     });
   }
 
-  async createPlayer(data: Prisma.PlayerCreateInput): Promise<Player> {
+  async createPlayer(data: Prisma.PlayerCreateInput): Promise<any> {
     return this.prisma.player.create({
       data,
+      select: {
+        age: true,
+        image: true,
+        name: true,
+        id: true,
+      },
     });
   }
 
-  async updateUser(params: {
+  async updatePlayer(params: {
     where: Prisma.PlayerWhereUniqueInput;
     data: Prisma.PlayerUpdateInput;
-  }): Promise<Player> {
+  }): Promise<any> {
     const { where, data } = params;
 
     return this.prisma.player.update({
       where,
       data,
+      select: {
+        age: true,
+        image: true,
+        name: true,
+        id: true,
+      },
     });
   }
 
   async deletePlayer(where: Prisma.PlayerWhereUniqueInput): Promise<Player> {
     return this.prisma.player.delete({
       where,
+    });
+  }
+
+  async countPlayers(): Promise<number> {
+    return this.prisma.player.count();
+  }
+
+  async playerAggregate() {
+    return this.prisma.player.aggregate({
+      _avg: {
+        age: true,
+      },
     });
   }
 }

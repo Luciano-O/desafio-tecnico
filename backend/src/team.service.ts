@@ -6,32 +6,45 @@ import { Prisma, Team } from '@prisma/client';
 export class TeamService {
   constructor(private prisma: PrismaService) {}
 
-  async teams(params: { where?: Prisma.TeamWhereInput }): Promise<Team[]> {
+  async teams(params: { where?: Prisma.TeamWhereInput }): Promise<any[]> {
     const { where } = params;
 
     return this.prisma.team.findMany({
       where,
-      include: {
+      select: {
         Player: true,
+        id: true,
+        image: true,
+        name: true,
       },
     });
   }
 
-  async createTeam(data: Prisma.TeamCreateInput): Promise<Team> {
+  async createTeam(data: Prisma.TeamCreateInput): Promise<any> {
     return this.prisma.team.create({
       data,
+      select: {
+        id: true,
+        image: true,
+        name: true,
+      },
     });
   }
 
   async updateTeam(params: {
     where: Prisma.TeamWhereUniqueInput;
     data: Prisma.PlayerUpdateInput;
-  }): Promise<Team> {
+  }): Promise<any> {
     const { where, data } = params;
 
     return this.prisma.team.update({
       where,
       data,
+      select: {
+        id: true,
+        image: true,
+        name: true,
+      },
     });
   }
 
@@ -39,5 +52,9 @@ export class TeamService {
     return this.prisma.team.delete({
       where,
     });
+  }
+
+  async countTeams(): Promise<number> {
+    return this.prisma.team.count();
   }
 }
