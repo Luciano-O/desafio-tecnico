@@ -12,10 +12,18 @@ export class TeamService {
     return this.prisma.team.findMany({
       where,
       select: {
-        Player: true,
         id: true,
         image: true,
         name: true,
+        Player: {
+          select: {
+            name: true,
+            id: true,
+            age: true,
+            image: true,
+          },
+        },
+        _count: true,
       },
     });
   }

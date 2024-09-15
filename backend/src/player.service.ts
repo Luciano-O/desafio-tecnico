@@ -16,6 +16,13 @@ export class PlayerService {
         image: true,
         name: true,
         id: true,
+        team: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+          },
+        },
       },
     });
   }

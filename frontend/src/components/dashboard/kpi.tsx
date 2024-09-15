@@ -10,9 +10,7 @@ export default function Kpi() {
       .then(({ data }) => {
         setFullInfo(data)
       })
-      .catch((e) => {
-        console.log(e);
-        
+      .catch(() => {
       })
   }
 
