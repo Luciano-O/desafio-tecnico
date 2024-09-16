@@ -72,7 +72,6 @@ export default function TeamsGraph() {
                 xAxis: {
                   visible: true,
                   categories: teams,
-                  min: 0
                 },
                 legend: {
                   enabled: false,

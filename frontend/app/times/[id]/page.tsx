@@ -16,7 +16,7 @@ export default function TeamDetails() {
   const bringData = () => {
     setIsLoading(true)
     
-    api.get('/team/' + params.id)
+    api.get('/team/' + params?.id)
       .then(({ data }) => {
         setTeam(data)
         setIsLoading(false)

@@ -10,11 +10,7 @@ services:
       - backend
     environment:
       NEXT_PUBLIC_BACKEND_URL: http://backend:3001
-      CHOKIDAR_USEPOLLING: "true"
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-    command: npm run dev
+    restart: always
 
   backend:
     build:
@@ -25,11 +21,9 @@ services:
       - db
     environment:
       DATABASE_URL: mysql://root:password@db:3306/mydb
-      CHOKIDAR_USEPOLLING: "true"
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
-    command: npm run start:dev
+    restart: always
+    command: >
+      sh -c "npx prisma migrate deploy && node dist/main"  # Executa migrações antes de iniciar
 
   db:
     image: mysql:8
@@ -40,6 +34,7 @@ services:
       MYSQL_DATABASE: mydb
     volumes:
       - mysql_data:/var/lib/mysql
+    restart: always
 
 volumes:
   mysql_data:

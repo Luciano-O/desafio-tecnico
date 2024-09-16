@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 import { useParams, useRouter } from 'next/navigation'
 import { api } from '../../../../src/lib/axios'
 import { Team } from '../../../../src/components/dashboard/teams'
+import Image from 'next/image'
 
 export default function EditTeam() {
   const [ image, setImage ] = useState<string>('')
@@ -33,7 +34,7 @@ export default function EditTeam() {
 
   const bringPlayer = () => {
     setIsAllLoading(true)
-    api.get('/player/' + params.id)
+    api.get('/player/' + params?.id)
       .then(({ data }) => {
         setName(data.name)
         setImage(data.image)
@@ -54,11 +55,11 @@ export default function EditTeam() {
     const formData = new FormData()
 
     formData.append('name', name)
-    formData.append('age', Number(age))
+    formData.append('age', age)
     formData.append('teamId', selectedTeam)
     if(file) formData.append('file', file)
 
-    api.put('players/' + params.id, formData, { headers: {'Content-Type': 'multipart/form-data'}})
+    api.put('players/' + params?.id, formData, { headers: {'Content-Type': 'multipart/form-data'}})
       .then(() => {
         setIsLoading(false)
         Swal.fire({
@@ -107,7 +108,7 @@ export default function EditTeam() {
               <div
                 className='w-32 h-w-32 relative'
               >
-                <img 
+                <Image 
                   src={image ? image : defaultUser}
                   alt=''
                   className='w-full h-full rounded-full'

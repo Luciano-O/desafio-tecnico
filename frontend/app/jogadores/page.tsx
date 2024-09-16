@@ -43,19 +43,19 @@ export default function Players() {
       })
   }
 
-  const orderTable = (field: string, currentArr: Player[], secField ?: string) => {
+  const orderTable = (field: string, currentArr: any, secField ?: string) => {
     if(secField) {
-      const finalArr = currentArr.sort((a, b) => b[field][secField] - a[field][secField])
+      const finalArr = currentArr.sort((a: any, b: any) => b[field][secField] - a[field as keyof Player][secField])
       return setPlayers(finalArr)
     }
 
-    if(typeof currentArr[0][field] === 'string') {
-      const finalArr = currentArr.sort((a, b) => b[field].localeCompare(a[field]))
+    if(typeof currentArr[0][field as keyof Player] === 'string') {
+      const finalArr = currentArr.sort((a: any, b: any) => b[field].localeCompare(a[field]))
      
       return setPlayers(finalArr)
     }
     
-    const finalArr = currentArr.sort((a, b) => b[field] - a[field])
+    const finalArr = currentArr.sort((a: any, b: any) => b[field] - a[field])
 
     console.log(finalArr);
     
@@ -156,7 +156,7 @@ export default function Players() {
                       className='w-4 h-4 text-gray-500 hover:text-blue-500 cursor-pointer'
                       onClick={() => orderTable('team', players ? players : [], 'name')}
                     />
-                    Quantidade de jogadores
+                    Time
                   </span>
                 </td>
                 <td

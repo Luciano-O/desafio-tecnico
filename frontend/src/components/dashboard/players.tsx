@@ -66,7 +66,7 @@ export default function Players() {
             return (
               <Link
                 className='shadow-default flex gap-5 items-center py-4 min-w-64 h-28 px-4 rounded-md bg-white'
-                href={`/player/${item.id}`}
+                href={`/jogadores/${item.id}/editar`}
                 key={item.id}
               >
                 <img
