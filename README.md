@@ -1,6 +1,6 @@
-# Projeto Fullstack com Next.js, NestJS, Prisma e PostgreSQL
+# Teste fullstack - Lupit.io com Next.js, NestJS, Prisma e PostgreSQL
 
-Este projeto é uma aplicação fullstack composta por um **frontend** feito com **Next.js**, um **backend** desenvolvido em **NestJS** com **PrismaORM**, e um banco de dados **PostgreSQL**. A aplicação é orquestrada usando **Docker Compose**, o que permite uma execução simplificada em qualquer ambiente.
+Este projeto é uma aplicação fullstack composta por um **frontend** feito com **Next.js**, um **backend** desenvolvido em **NestJS** com **PrismaORM**, e um banco de dados **PostgreSQL**.
 
 ## Acessando o projeto
 
