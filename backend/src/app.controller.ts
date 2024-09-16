@@ -49,7 +49,7 @@ export class AppController {
   ): Promise<Team> {
     return this.teamService.createTeam({
       ...teamData,
-      image: 'http://localhost:3001/uploads/' + file.filename,
+      image: 'https://desafio-tecnico-yzpm.onrender.com/' + file.filename,
     });
   }
 
@@ -64,7 +64,7 @@ export class AppController {
     return this.playerService.createPlayer({
       age: Number(age),
       name,
-      image: 'http://localhost:3001/uploads/' + file.filename,
+      image: 'https://desafio-tecnico-yzpm.onrender.com/' + file.filename,
       team: {
         connect: { id: Number(teamId) },
       },
@@ -93,7 +93,7 @@ export class AppController {
       data: {
         ...teamData,
         image:
-          file?.filename && 'http://localhost:3001/uploads/' + file.filename,
+          file?.filename && 'https://desafio-tecnico-yzpm.onrender.com/' + file.filename,
       },
     });
   }
@@ -113,7 +113,7 @@ export class AppController {
         age: Number(age),
         name,
         image:
-          file?.filename && 'http://localhost:3001/uploads/' + file.filename,
+          file?.filename && 'https://desafio-tecnico-yzpm.onrender.com/' + file.filename,
         team: {
           connect: { id: Number(teamId) },
         },
