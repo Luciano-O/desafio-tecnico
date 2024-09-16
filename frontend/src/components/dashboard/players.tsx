@@ -4,7 +4,7 @@ import { api } from '../../lib/axios'
 import { Loader } from 'lucide-react'
 import Link from 'next/link'
 
-type Player = {
+export type Player = {
   age: number,
   image: string,
   name: string,
@@ -23,7 +23,7 @@ export default function Players() {
   const bringPlayers = () => {
     setIsLoading(true)
     api.get('/players')
-    .then(({ data }) => {
+    .then(({ data }: { data: Player[] }) => {
       setPlayers(data)
       setIsLoading(false)
     })
@@ -37,11 +37,22 @@ export default function Players() {
     <div
       className={`flex flex-col gap-4 w-full ${!isLoading && 'overflow-x-auto'} py-3`}
     >
-      <h1
-        className='font-semibold'
+      <div
+        className='w-full flex justify-between items-center'
       >
-        Jogadores
-      </h1>
+        <h1
+          className='font-semibold'
+        >
+          Jogadores
+        </h1>
+
+        <Link
+          href={'/players'}
+          className='hover:text-blue-500 font-semibold'
+        >
+          Ver mais
+        </Link>
+      </div>
       <div
         className={`flex gap-3 ${isLoading && 'justify-center items-center'}`}
       >

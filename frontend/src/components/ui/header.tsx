@@ -24,7 +24,7 @@ export default function Header() {
           </div>
         </Link>
         <Link
-          href={'/players'}
+          href={'/jogadores'}
           className='group relative'
         >
           <User 
@@ -37,7 +37,7 @@ export default function Header() {
           </div>
         </Link>
         <Link
-          href={'/teams'}
+          href={'/times'}
           className='group relative'
         >
           <Users

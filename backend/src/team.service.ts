@@ -6,6 +6,25 @@ import { Prisma, Team } from '@prisma/client';
 export class TeamService {
   constructor(private prisma: PrismaService) {}
 
+  async team(where: Prisma.TeamWhereUniqueInput): Promise<any> {
+    return this.prisma.team.findFirst({
+      where,
+      select: {
+        id: true,
+        image: true,
+        name: true,
+        Player: {
+          select: {
+            name: true,
+            id: true,
+            age: true,
+            image: true,
+          },
+        },
+      },
+    });
+  }
+
   async teams(params: { where?: Prisma.TeamWhereInput }): Promise<any[]> {
     const { where } = params;
 

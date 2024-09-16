@@ -40,11 +40,22 @@ export default function Teams() {
     <div
       className={`flex flex-col gap-4 w-full ${!isLoading && 'overflow-x-auto'} py-3`}
     >
-      <h1
-        className='font-semibold'
+      <div
+        className='w-full flex justify-between items-center'
       >
-        Times
-      </h1>
+        <h1
+          className='font-semibold'
+        >
+          Times
+        </h1>
+
+        <Link
+          href={'/times'}
+          className='hover:text-blue-500 font-semibold'
+        >
+          Ver mais
+        </Link>
+      </div>
       <div
         className={`flex gap-3 ${isLoading && 'justify-center items-center'}`}
       >
@@ -58,7 +69,7 @@ export default function Teams() {
             return (
               <Link
                 className='shadow-default flex gap-5 items-center py-4 w-64 h-28 px-4 rounded-md bg-white'
-                href={`/team/${item.id}`}
+                href={`/times/${item.id}`}
                 key={item.id}
               >
                 <img

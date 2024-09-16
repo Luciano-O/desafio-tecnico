@@ -6,6 +6,25 @@ import { Player, Prisma } from '@prisma/client';
 export class PlayerService {
   constructor(private prisma: PrismaService) {}
 
+  async player(where: Prisma.PlayerWhereUniqueInput): Promise<any> {
+    return this.prisma.player.findFirst({
+      where,
+      select: {
+        age: true,
+        image: true,
+        name: true,
+        id: true,
+        team: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+          },
+        },
+      },
+    });
+  }
+
   async players(params: { where?: Prisma.PlayerWhereInput }): Promise<any[]> {
     const { where } = params;
 

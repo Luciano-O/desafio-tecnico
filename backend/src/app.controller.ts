@@ -21,6 +21,16 @@ export class AppController {
     private readonly playerService: PlayerService,
   ) {}
 
+  @Get('team/:id')
+  getTeam(@Param('id') id: string): Promise<Team> {
+    return this.teamService.team({ id: Number(id) });
+  }
+
+  @Get('player/:id')
+  getPlayer(@Param('id') id: string): Promise<Team> {
+    return this.playerService.player({ id: Number(id) });
+  }
+
   @Get('teams')
   getTeams(): Promise<Team[]> {
     return this.teamService.teams({});
@@ -72,24 +82,42 @@ export class AppController {
   }
 
   @Put('teams/:id')
+  @UseInterceptors(FileInterceptor('file'))
   async updateTeam(
     @Param('id') id: string,
     @Body() teamData: { name?: string },
+    @UploadedFile() file,
   ): Promise<Team> {
     return this.teamService.updateTeam({
       where: { id: Number(id) },
-      data: teamData,
+      data: {
+        ...teamData,
+        image:
+          file?.filename && 'http://localhost:3001/uploads/' + file.filename,
+      },
     });
   }
 
   @Put('players/:id')
+  @UseInterceptors(FileInterceptor('file'))
   async updatePlayer(
     @Param('id') id: string,
-    @Body() playerData: { name?: string; age?: number; teamId?: number },
+    @Body() playerData: { name?: string; age?: string; teamId?: string },
+    @UploadedFile() file,
   ): Promise<Player> {
+    const { age, name, teamId } = playerData;
+
     return this.playerService.updatePlayer({
       where: { id: Number(id) },
-      data: playerData,
+      data: {
+        age: Number(age),
+        name,
+        image:
+          file?.filename && 'http://localhost:3001/uploads/' + file.filename,
+        team: {
+          connect: { id: Number(teamId) },
+        },
+      },
     });
   }
 

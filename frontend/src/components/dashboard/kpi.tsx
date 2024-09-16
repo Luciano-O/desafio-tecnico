@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { api } from '../../lib/axios'
+import { Loader } from 'lucide-react'
 
 export default function Kpi() {
   const [ fullInfo, setFullInfo ] = useState<null | { averageAge: number, teamTotal: number, playerTotal: number}>(null)
@@ -23,10 +24,13 @@ export default function Kpi() {
       className='flex gap-3'
     >
       <div
-        className='flex flex-col w-60 h-32 bg-white rounded-md shadow-default p-5 justify-around'
+        className='flex flex-col min-w-64 h-32 bg-white rounded-md shadow-default p-5 justify-around'
       >
         {
-          fullInfo &&
+          !fullInfo ?
+          <Loader 
+            className='w-20 h-20 animate-spin self-center'
+          /> :
           <>
             <span
               className='text-6xl font-semibold'
@@ -42,10 +46,13 @@ export default function Kpi() {
         }
       </div>
       <div
-        className='flex flex-col w-60 h-32 bg-white rounded-md shadow-default p-5 justify-around'
+        className='flex flex-col min-w-64 h-32 bg-white rounded-md shadow-default p-5 justify-around'
       >
         {
-          fullInfo &&
+          !fullInfo ?
+          <Loader 
+            className='w-20 h-20 animate-spin'
+          /> :
           <>
             <span
               className='text-6xl font-semibold'
@@ -61,10 +68,13 @@ export default function Kpi() {
         }
       </div>
       <div
-        className='flex flex-col w-60 h-32 bg-white rounded-md shadow-default p-5 justify-around'
+        className='flex flex-col min-w-64 h-32 bg-white rounded-md shadow-default p-5 justify-around'
       >
         {
-          fullInfo &&
+          !fullInfo ?
+          <Loader 
+            className='w-20 h-20 animate-spin'
+          /> :
           <>
             <span
               className='text-6xl font-semibold'
