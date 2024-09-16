@@ -5,7 +5,7 @@ Este projeto é uma aplicação fullstack composta por um **frontend** feito com
 ## Acessando o projeto
 
 ### Frontend
-- **[Vercel](https://desafio-tecnico-lupit-6jwwr0spr-lucianoos-projects.vercel.app)**: O frontend do projeto esta hospedado no vercel, e pode ser acessado através desse link
+- **[Vercel](https://desafio-tecnico-lupit.vercel.app/)**: O frontend do projeto esta hospedado no vercel, e pode ser acessado através desse link
 
 ### Backend
 - O backend do projeto esta hospedado no Render, e sua url é: https://desafio-tecnico-yzpm.onrender.com
