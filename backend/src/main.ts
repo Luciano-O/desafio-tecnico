@@ -15,6 +15,6 @@ async function bootstrap() {
     mkdirSync(uploadDir);
   }
   app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
-  await app.listen(3001);
+  await app.listen(process.env.PORT || 3001);
 }
 bootstrap();
